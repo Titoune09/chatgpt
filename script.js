@@ -10,6 +10,7 @@ const feedbackEl = document.getElementById('feedback');
 const MAX_LIVES = 3;
 const ROUND_TIME = 60;
 const COMBO_WINDOW = 1200;
+const TOKEN_ICONS = ['🔑', '🛞', '🚗', '🛠️'];
 
 const state = {
     score: 0,
@@ -21,7 +22,7 @@ const state = {
     tokenTimerId: null,
     lastCaptureTime: 0,
     tokenId: 0,
-    best: Number(localStorage.getItem('pause-jeu-best') || 0),
+    best: Number(localStorage.getItem('garage-undercover-best') || 0),
 };
 
 bestEl.textContent = state.best;
@@ -35,8 +36,8 @@ function startGame() {
     resetState();
     state.playing = true;
     startBtn.disabled = true;
-    startBtn.textContent = 'En cours...';
-    feedback('Attrape le jeton !');
+    startBtn.textContent = 'Casse en cours...';
+    feedback('Capture les clés avant la police !');
     tickTimer();
     spawnToken();
 }
@@ -74,7 +75,7 @@ function spawnToken() {
     const token = document.createElement('button');
     token.className = 'token';
     token.type = 'button';
-    token.textContent = '⚡';
+    token.textContent = TOKEN_ICONS[randomInRange(0, TOKEN_ICONS.length - 1)];
 
     const size = randomInRange(60, 110);
     const maxLeft = arena.clientWidth - size;
@@ -115,7 +116,7 @@ function captureToken(id) {
     const points = basePoints * state.combo;
     state.score += points;
 
-    feedback(`+${points} points ! Combo x${state.combo}`, 'success');
+    feedback(`+${points} réputation ! Combo x${state.combo}`, 'success');
     updateHud();
     spawnToken();
 }
@@ -123,12 +124,12 @@ function captureToken(id) {
 function missToken() {
     state.combo = 1;
     state.lives -= 1;
-    feedback('Oups ! Ne le laisse pas filer.', 'fail');
+    feedback('Aïe ! Une clé vient de filer.', 'fail');
     updateHud();
     removeToken();
 
     if (state.lives <= 0) {
-        endGame('Toutes les vies sont perdues !');
+        endGame('Planques grillées !');
         return;
     }
 
@@ -143,14 +144,14 @@ function endGame(message) {
     clearTimeout(state.tokenTimerId);
     removeToken();
     startBtn.disabled = false;
-    startBtn.textContent = 'Rejouer';
+    startBtn.textContent = 'Relancer un casse';
 
     if (state.score > state.best) {
         state.best = state.score;
-        localStorage.setItem('pause-jeu-best', String(state.best));
+        localStorage.setItem('garage-undercover-best', String(state.best));
         feedback(`${message} Nouveau record : ${state.score} !`, 'success');
     } else {
-        feedback(`${message} Score final : ${state.score}.`, 'fail');
+        feedback(`${message} Réputation finale : ${state.score}.`, 'fail');
     }
 
     updateHud();
@@ -182,6 +183,6 @@ function randomInRange(min, max) {
 
 window.addEventListener('blur', () => {
     if (state.playing) {
-        endGame('Pause forcée : la fenêtre a été quittée.');
+        endGame('Descente : tu as quitté le garage.');
     }
 });
