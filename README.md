@@ -1,25 +1,58 @@
-# Overdrive Society
+# LuxDrive — Showroom Automobile Immersif
 
-Site vitrine immersif pour passionnés francophones de voitures d'exception. L'expérience repose sur une application React sans
-build step qui présente les collections, expériences et services du club Overdrive.
+LuxDrive est une expérience web premium développée avec React, TypeScript, Tailwind CSS et Framer Motion. L'interface met en scène un showroom automobile futuriste en quatre sections : hero immersif, sélection de modèles, focus technologie & design et réservation d'essai.
 
-## Démarrer
+## Pile technique
 
-Ouvrez simplement `index.html` dans un navigateur moderne. Les dépendances React sont chargées via CDN et le code JSX est
-transpilé à la volée grâce à Babel Standalone.
+- **Framework** : React 18 + Vite
+- **Langage** : TypeScript strict
+- **Styling** : Tailwind CSS, design system glossy / néon
+- **Animations** : Framer Motion, effets parallax et motion 3D
+- **3D temps réel** : React Three Fiber + Drei
+- **Formulaires** : React Hook Form + Zod
+- **Carte** : React Leaflet (fond sombre Jawg)
 
-## Caractéristiques
+## Démarrage
 
-- Hero dynamique qui alterne automatiquement trois hypercars exclusives.
-- Sélecteur interactif des collections avec prévisualisation visuelle et accents dynamiques.
-- Sections animées (IntersectionObserver) pour les expériences, l'atelier signature, l'agenda et la galerie.
-- Formulaire d'invitation avec mise en avant des services membres.
-- Commutation clair/sombre basée sur les préférences système et commande utilisateur.
+```bash
+npm install
+npm run dev
+```
 
-## Déploiement sur Vercel
+Le serveur de développement est disponible sur [http://localhost:5173](http://localhost:5173).
 
-1. Installez l'interface de ligne de commande Vercel et authentifiez-vous : `npm i -g vercel && vercel login`.
-2. Depuis la racine du projet (`index.html`, `styles.css`, `script.js`), exécutez `vercel` pour créer un premier déploiement.
-3. Lors de l'initialisation, choisissez **Framework: Other** afin d'utiliser la configuration statique fournie.
-4. Le fichier [`vercel.json`](./vercel.json) force l'utilisation du build statique et redirige toute route côté client vers `index.html`, ce qui permet à l'application React monopage de fonctionner avec le routage personnalisé.
-5. Pour publier automatiquement les futures mises à jour, connectez le dépôt à Vercel : chaque push sur la branche principale déclenchera un nouveau déploiement.
+## Scripts
+
+- `npm run dev` : lance le serveur Vite
+- `npm run build` : compile TypeScript et génère le build de production
+- `npm run preview` : prévisualise le build
+
+## Structure des dossiers
+
+```
+src/
+├─ components/
+│  ├─ reactbits/    # Composants inspirés de ReactBits (Hero parallax, buttons, cards, etc.)
+│  └─ LogoReveal.tsx
+├─ data/            # Données statiques (modèles, innovations)
+├─ sections/        # Sections principales de la page
+├─ styles/          # Fichiers Tailwind globaux
+├─ App.tsx          # Composition des sections
+└─ main.tsx         # Point d'entrée Vite
+```
+
+## Design system
+
+- Palette : `#0A0A0A` (Night), `#1F1F1F` (Steel), `#00C2FF` (Neon), `#E63946` (Engine), `#FAFAFA` (Chrome)
+- Typographies Google Fonts : Orbitron, Rajdhani, Anton, Inter
+- Motions : reveal progressifs, parallax scroll, hover 3D, transitions fluides
+
+## Accessibilité & SEO
+
+- Structure sémantique et attributs ARIA sur les composants interactifs
+- Vidéo hero accessible (muted/autoplay) avec image poster fallback
+- Meta description et polices chargées en amont
+
+## Déploiement
+
+Construisez le projet puis servez le dossier `dist/` via un hébergeur statique (Vercel, Netlify, Cloudflare Pages...).
