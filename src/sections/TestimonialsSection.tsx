@@ -7,9 +7,9 @@ export function TestimonialsSection() {
     <section id="temoignages" className="relative mx-auto mt-40 max-w-6xl px-6">
       <div className="rounded-[3rem] border border-white/10 bg-[#10141c] p-12 shadow-subtle">
         <header className="text-center">
-          <h2 className="font-display text-3xl text-chrome sm:text-4xl">Ruban de preuves</h2>
+          <h2 className="font-display text-3xl text-chrome sm:text-4xl">Retours de la communauté</h2>
           <p className="mt-4 text-base text-chrome/70">
-            Cartes ovales rebondissantes sur un ruban fluide, animées en cascade.
+            Un ruban de témoignages qui respire l’asphalte : coups de cœur circuits, roadtrips et accessibilité renforcée.
           </p>
         </header>
         <div className="mt-12">

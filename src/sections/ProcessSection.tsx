@@ -10,8 +10,10 @@ export function ProcessSection() {
       <div className="rounded-[3rem] border border-white/10 bg-night/70 p-12 shadow-subtle backdrop-blur">
         <div className="flex flex-col gap-16 lg:flex-row">
           <div className="flex-1">
-            <h2 className="font-display text-3xl text-chrome sm:text-4xl">Process sinusoïdal</h2>
-            <p className="mt-4 text-base text-chrome/70">Une colonne claire pour suivre chaque étape sans se perdre.</p>
+            <h2 className="font-display text-3xl text-chrome sm:text-4xl">Le parcours membre calibré</h2>
+            <p className="mt-4 text-base text-chrome/70">
+              Chaque étape est pensée comme un arrêt au stand : rapide, limpide et orienté sensations.
+            </p>
             <div className="mt-10 hidden lg:block">
               <Stepper steps={processSteps} currentIndex={current} onStepChange={setCurrent} />
             </div>

@@ -9,8 +9,10 @@ export function ArgumentsSection() {
     >
       <div className="relative z-10">
         <header className="mx-auto max-w-3xl text-center">
-          <h2 className="font-display text-3xl text-chrome sm:text-4xl">Les bénéfices serpentins</h2>
-          <p className="mt-4 text-base text-chrome/70">Chaque argument s’aligne sur une ligne claire et lisible.</p>
+          <h2 className="font-display text-3xl text-chrome sm:text-4xl">Pourquoi RevPulse fait vibrer le club</h2>
+          <p className="mt-4 text-base text-chrome/70">
+            Une lecture instantanée pour comprendre comment notre garage digital nourrit chaque passion automobile.
+          </p>
         </header>
         <AnimatedList
           className="mt-16"
@@ -32,7 +34,8 @@ export function ArgumentsSection() {
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(123,223,242,0.18),transparent_60%)]" />
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(240,157,81,0.15),transparent_70%)]" />
                   <p className="relative flex h-full items-center p-6 text-sm text-chrome/60">
-                    Mise en avant progressive du contenu, structure linéaire et transitions fluides pour guider le regard sans surcharge.
+                    Interfaces pensées comme un tableau de bord : informations hiérarchisées, contraste moteur et call-to-action
+                    lisibles même en gants.
                   </p>
                 </div>
               </div>

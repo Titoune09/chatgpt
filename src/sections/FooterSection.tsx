@@ -6,8 +6,8 @@ export function FooterSection() {
     <footer id="footer" className="relative mt-40 bg-night px-6 pb-16">
       <div className="mx-auto max-w-6xl overflow-hidden rounded-[3rem] border border-white/10 bg-[#10141c] p-12">
         <div className="relative rounded-[2.5rem] border border-white/10 bg-steel/70 p-8 text-center" style={{ clipPath: 'ellipse(85% 100% at 50% 50%)' }}>
-          <h3 className="font-display text-2xl text-chrome">Restez dans l’orbite</h3>
-          <p className="mt-3 text-sm text-chrome/70">Abonnez-vous pour recevoir les drops créatifs et insights techniques.</p>
+          <h3 className="font-display text-2xl text-chrome">Restez dans la voie rapide</h3>
+          <p className="mt-3 text-sm text-chrome/70">Abonnez-vous pour recevoir les alertes track days, playlists moteur et bons plans garage.</p>
           <form className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <label htmlFor="email" className="sr-only">
               Email
@@ -32,25 +32,25 @@ export function FooterSection() {
         </div>
         <div className="mt-12 grid gap-8 md:grid-cols-3">
           <div className="space-y-3 text-sm text-chrome/60">
-            <div className="font-display text-xl text-chrome">LuxDrive 360</div>
-            <p>Un collectif d’expertes & d’experts en creative engineering basé entre Paris et Montréal.</p>
+            <div className="font-display text-xl text-chrome">RevPulse Garage</div>
+            <p>Club digital né entre Paris et Montréal pour connecter pilotes, collectionneurs et artisans d’exception.</p>
           </div>
           <div className="text-sm text-chrome/60">
             <div className="font-medium uppercase tracking-[0.35em] text-chrome/40">Navigation</div>
             <ul className="mt-4 space-y-2">
               <li>
                 <a href="#hero" className="hover:text-accent">
-                  Hero
+                  Club
                 </a>
               </li>
               <li>
                 <a href="#showroom" className="hover:text-accent">
-                  Showroom
+                  Machines
                 </a>
               </li>
               <li>
                 <a href="#blog" className="hover:text-accent">
-                  Ressources
+                  Journal
                 </a>
               </li>
             </ul>
@@ -59,13 +59,13 @@ export function FooterSection() {
             <div className="font-medium uppercase tracking-[0.35em] text-chrome/40">Contact</div>
             <ul className="mt-4 space-y-2">
               <li>
-                <a href="mailto:hello@luxdrive360.com" className="hover:text-accent">
-                  hello@luxdrive360.com
+                <a href="mailto:crew@revpulse.garage" className="hover:text-accent">
+                  crew@revpulse.garage
                 </a>
               </li>
               <li>
                 <a href="#cta" className="hover:text-accent">
-                  Réserver un atelier
+                  Demander une invitation
                 </a>
               </li>
               <li className="flex gap-3 text-base">
@@ -79,7 +79,7 @@ export function FooterSection() {
             </ul>
           </div>
         </div>
-        <p className="mt-10 text-xs text-chrome/40">© {new Date().getFullYear()} LuxDrive 360 — Mentions & confidentialité.</p>
+        <p className="mt-10 text-xs text-chrome/40">© {new Date().getFullYear()} RevPulse Garage — Mentions & confidentialité.</p>
       </div>
     </footer>
   );

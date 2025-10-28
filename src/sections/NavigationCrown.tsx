@@ -21,7 +21,7 @@ export function NavigationCrown() {
       >
         <div className="flex items-center justify-between gap-4">
           <a href="#hero" className="font-display text-sm uppercase tracking-[0.35em] text-accent">
-            LuxDrive 360
+            RevPulse Garage
           </a>
           <div className="hidden flex-1 md:block">
             <InfiniteMenu items={navLinks.map((link) => ({ href: link.href, label: link.label, description: link.description }))} />
