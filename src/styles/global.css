@@ -8,7 +8,9 @@
 
 body {
   min-height: 100vh;
-  background-color: #0A0A0A;
+  background-color: #0f1115;
+  color: #f8fafc;
+  -webkit-font-smoothing: antialiased;
 }
 
 .noise-overlay {
@@ -16,7 +18,7 @@ body {
   inset: 0;
   pointer-events: none;
   background-image: url('https://grainy-gradients.vercel.app/noise.svg');
-  opacity: 0.08;
+  opacity: 0.04;
   mix-blend-mode: screen;
   z-index: 0;
 }

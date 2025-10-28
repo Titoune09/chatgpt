@@ -6,15 +6,15 @@ import { SpotlightCard } from '../components/reactbits/SpotlightCard';
 export function TechnologySection() {
   return (
     <section id="innovation" className="relative mx-auto max-w-6xl px-6 py-24">
-      <div className="mb-20 flex flex-col gap-4 text-center">
-        <span className="text-xs uppercase tracking-[0.6em] text-chrome/50">Technologie & Design</span>
-        <h2 className="font-display text-4xl uppercase tracking-[0.3em] md:text-5xl">Innovation sensible</h2>
+      <div className="mb-16 space-y-4 text-center">
+        <span className="text-sm uppercase tracking-[0.3em] text-chrome/50">Technologie & Design</span>
+        <h2 className="font-display text-4xl md:text-5xl">Innovation sensible</h2>
         <p className="mx-auto max-w-3xl text-sm text-chrome/60">
           Chaque section du véhicule est sculptée par les flux d'air et orchestrée par une intelligence embarquée. Découvrez les piliers d'une expérience de conduite augmentée.
         </p>
       </div>
 
-      <div className="space-y-16">
+      <div className="space-y-14">
         {innovations.map((innovation, index) => (
           <ScrollBasedParallaxSection
             key={innovation.id}
@@ -28,8 +28,8 @@ export function TechnologySection() {
             }
           >
             <motion.div className="space-y-4" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-              <span className="text-xs uppercase tracking-[0.5em] text-neon/70">{innovation.subtitle}</span>
-              <h3 className="font-display text-3xl uppercase tracking-[0.3em] text-chrome">{innovation.title}</h3>
+              <span className="text-xs uppercase tracking-[0.25em] text-accent/80">{innovation.subtitle}</span>
+              <h3 className="font-display text-3xl text-chrome">{innovation.title}</h3>
               <p className="max-w-xl text-sm text-chrome/60">{innovation.description}</p>
             </motion.div>
           </ScrollBasedParallaxSection>

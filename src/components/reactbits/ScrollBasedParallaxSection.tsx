@@ -16,8 +16,8 @@ export function ScrollBasedParallaxSection({
   const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
 
   return (
-    <div ref={ref} className="relative grid gap-10 overflow-hidden rounded-[3rem] border border-white/10 bg-steel/30 p-12 backdrop-blur-3xl lg:grid-cols-2">
-      <motion.div style={{ x, opacity }} className="relative h-80 overflow-hidden rounded-3xl border border-white/10">
+    <div ref={ref} className="relative grid gap-10 overflow-hidden rounded-[3rem] border border-white/5 bg-night/70 p-10 shadow-halo backdrop-blur lg:grid-cols-2">
+      <motion.div style={{ x, opacity }} className="relative h-80 overflow-hidden rounded-3xl border border-white/5">
         {media}
       </motion.div>
       <motion.div

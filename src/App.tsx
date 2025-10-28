@@ -14,18 +14,24 @@ function Navigation() {
 
   return (
     <motion.nav
-      initial={{ opacity: 0, y: -20 }}
+      initial={{ opacity: 0, y: -16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
-      className="fixed left-1/2 top-8 z-40 flex -translate-x-1/2 items-center gap-4 rounded-full border border-white/10 bg-night/70 px-8 py-3 backdrop-blur-2xl"
+      transition={{ duration: 0.7, ease: 'easeOut' }}
+      className="fixed inset-x-0 top-4 z-40"
     >
-      <span className="font-display text-xs uppercase tracking-[0.5em] text-neon">LuxDrive</span>
-      <div className="flex items-center gap-3 text-[0.7rem] uppercase tracking-[0.4em] text-chrome/60">
-        {links.map((link) => (
-          <a key={link.href} href={link.href} className="transition hover:text-neon">
-            {link.label}
-          </a>
-        ))}
+      <div className="mx-auto flex max-w-6xl items-center justify-between rounded-full border border-white/5 bg-night/80 px-6 py-3 text-xs uppercase tracking-[0.35em] text-chrome/70 shadow-halo backdrop-blur">
+        <span className="font-display text-sm text-accent/90">LuxDrive</span>
+        <div className="flex items-center gap-4">
+          {links.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="rounded-full px-3 py-1 text-[0.65rem] transition-colors hover:bg-steel hover:text-chrome"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
       </div>
     </motion.nav>
   );
@@ -33,9 +39,9 @@ function Navigation() {
 
 function Footer() {
   return (
-    <footer className="relative mx-auto mt-32 max-w-6xl rounded-3xl border border-white/5 bg-steel/60 px-8 py-12 text-center text-xs text-chrome/50">
+    <footer className="relative mx-auto mt-32 max-w-6xl rounded-3xl border border-white/5 bg-steel/80 px-8 py-10 text-center text-sm text-chrome/60">
       <p>© {new Date().getFullYear()} LuxDrive Corporation. Tous droits réservés.</p>
-      <p className="mt-2 uppercase tracking-[0.4em] text-chrome/30">Design by LuxDrive Studio</p>
+      <p className="mt-2 uppercase tracking-[0.3em] text-chrome/30">Design by LuxDrive Studio</p>
     </footer>
   );
 }
