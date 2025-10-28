@@ -7,39 +7,24 @@ export default {
   theme: {
     extend: {
       colors: {
-        night: '#0A0A0A',
-        steel: '#1F1F1F',
-        neon: '#00C2FF',
-        engine: '#E63946',
-        chrome: '#FAFAFA',
+        night: '#0f1115',
+        steel: '#161a23',
+        slate: '#1d222c',
+        sand: '#f4ede2',
+        accent: '#7bdff2',
+        ember: '#f09d51',
+        chrome: '#f8fafc',
       },
       fontFamily: {
-        display: ['"Orbitron"', '"Rajdhani"', '"Anton"', ...fontFamily.sans],
+        display: ['"Space Grotesk"', '"Rajdhani"', ...fontFamily.sans],
         sans: ['Inter', ...fontFamily.sans],
       },
       backgroundImage: {
-        'hero-gradient': 'radial-gradient(circle at top, rgba(0, 194, 255, 0.35), transparent 55%), radial-gradient(circle at bottom, rgba(230, 57, 70, 0.25), transparent 60%)',
+        'hero-gradient': 'radial-gradient(circle at top, rgba(123, 223, 242, 0.35), transparent 55%), radial-gradient(circle at bottom, rgba(240, 157, 81, 0.2), transparent 60%)',
       },
       boxShadow: {
-        neon: '0 0 25px rgba(0, 194, 255, 0.35)',
-        glow: '0 0 45px rgba(230, 57, 70, 0.3)',
-      },
-      dropShadow: {
-        chrome: '0 15px 25px rgba(0, 0, 0, 0.45)',
-      },
-      animation: {
-        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
-        'float-slow': 'floatSlow 12s ease-in-out infinite',
-      },
-      keyframes: {
-        pulseGlow: {
-          '0%, 100%': { boxShadow: '0 0 0 rgba(0, 194, 255, 0)' },
-          '50%': { boxShadow: '0 0 30px rgba(0, 194, 255, 0.55)' },
-        },
-        floatSlow: {
-          '0%, 100%': { transform: 'translateY(-1%)' },
-          '50%': { transform: 'translateY(2%)' },
-        },
+        halo: '0 20px 45px rgba(15, 17, 21, 0.4)',
+        subtle: '0 12px 30px rgba(12, 14, 18, 0.28)',
       },
     },
   },

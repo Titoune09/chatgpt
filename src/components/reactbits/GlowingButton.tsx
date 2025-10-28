@@ -3,21 +3,16 @@ import { motion } from 'framer-motion';
 import { ComponentPropsWithoutRef, forwardRef } from 'react';
 
 const buttonStyles = cva(
-  'relative inline-flex items-center justify-center overflow-hidden rounded-full px-6 py-3 font-medium uppercase tracking-[0.2em] text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon/60 focus-visible:ring-offset-2 focus-visible:ring-offset-night',
+  'relative inline-flex items-center justify-center rounded-full px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:ring-offset-2 focus-visible:ring-offset-night',
   {
     variants: {
       intent: {
-        primary: 'bg-gradient-to-r from-neon/80 via-neon to-blue-500 text-night shadow-neon',
-        secondary: 'bg-steel text-chrome border border-white/10 hover:border-neon/40',
-      },
-      glow: {
-        true: 'before:absolute before:inset-0 before:-z-10 before:bg-gradient-to-r before:from-neon/30 before:via-engine/30 before:to-neon/30 before:blur-2xl before:opacity-70',
-        false: '',
+        primary: 'bg-gradient-to-r from-accent via-accent/90 to-sky-400 text-night shadow-subtle hover:brightness-110',
+        secondary: 'border border-white/10 bg-steel/70 text-chrome hover:border-accent/50 hover:text-accent',
       },
     },
     defaultVariants: {
       intent: 'primary',
-      glow: true,
     },
   }
 );
@@ -29,12 +24,12 @@ export type GlowingButtonProps = VariantProps<typeof buttonStyles> &
   };
 
 export const GlowingButton = forwardRef<HTMLButtonElement, GlowingButtonProps>(
-  ({ className, intent, glow, children, icon, ...props }, ref) => (
+  ({ className, intent, children, icon, ...props }, ref) => (
     <motion.button
       ref={ref}
-      whileHover={{ scale: 1.04 }}
-      whileTap={{ scale: 0.98 }}
-      className={buttonStyles({ intent, glow, className })}
+      whileHover={{ scale: 1.03 }}
+      whileTap={{ scale: 0.97 }}
+      className={buttonStyles({ intent, className })}
       {...props}
     >
       <span className="flex items-center gap-2">
