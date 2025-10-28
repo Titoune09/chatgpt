@@ -24,9 +24,7 @@ export function NavigationCrown() {
             LuxDrive 360
           </a>
           <div className="hidden flex-1 md:block">
-            <InfiniteMenu
-              items={navLinks.map((link) => ({ href: link.href, label: link.label, icon: <span>{link.icon}</span> }))}
-            />
+            <InfiniteMenu items={navLinks.map((link) => ({ href: link.href, label: link.label, description: link.description }))} />
           </div>
           <div className="md:hidden">
             <button
@@ -43,24 +41,24 @@ export function NavigationCrown() {
           {isOpen && (
             <motion.div
               id="menu-radial"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
               className="md:hidden"
             >
-              <div className="absolute left-1/2 top-full z-50 mt-4 h-60 w-60 -translate-x-1/2 rounded-full border border-white/10 bg-night/80 p-6 text-sm backdrop-blur">
-                <ul className="grid h-full w-full grid-cols-2 place-items-center gap-4">
+              <div className="absolute left-0 right-0 top-full z-50 mt-4 rounded-3xl border border-white/10 bg-night/90 p-5 shadow-subtle backdrop-blur">
+                <ul className="flex flex-col gap-3 text-sm">
                   {navLinks.map((link) => (
                     <li key={link.href}>
                       <a
                         href={link.href}
-                        className="flex h-20 w-20 flex-col items-center justify-center gap-1 rounded-full border border-white/10 bg-steel/70 text-center text-[0.65rem] uppercase tracking-[0.35em] text-chrome/80"
+                        className="flex items-center justify-between gap-4 rounded-2xl border border-transparent px-4 py-3 text-chrome/80 transition-colors hover:border-accent/40 hover:text-chrome"
                         onClick={() => setIsOpen(false)}
                       >
-                        <span aria-hidden className="text-base">
-                          {link.icon}
-                        </span>
-                        {link.label}
+                        <span className="text-sm font-medium">{link.label}</span>
+                        {link.description && (
+                          <span className="text-[0.65rem] uppercase tracking-[0.35em] text-chrome/50">{link.description}</span>
+                        )}
                       </a>
                     </li>
                   ))}

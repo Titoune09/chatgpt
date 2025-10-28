@@ -5,7 +5,7 @@ type Step = {
   id: string;
   title: string;
   description: string;
-  icon: React.ReactNode;
+  phase?: string;
 };
 
 type StepperProps = {
@@ -31,21 +31,26 @@ export function Stepper({ steps, currentIndex = 0, onStepChange, className }: St
             viewport={{ once: true, amount: 0.4 }}
           >
             <div className="relative flex h-12 w-12 items-center justify-center">
-              <div className="absolute inset-0 rounded-full border border-accent/30 bg-night/70" />
-              <motion.div
+              <div className={cn('absolute inset-0 rounded-full border', isActive ? 'border-accent/40' : 'border-white/10')} />
+              <motion.span
                 className={cn(
-                  'relative flex h-10 w-10 items-center justify-center rounded-full border text-xl text-accent',
-                  isActive ? 'border-accent bg-accent/15 text-accent' : 'border-white/10 text-chrome/40'
+                  'relative flex h-10 w-10 items-center justify-center rounded-full bg-night/70 text-xs font-medium uppercase tracking-[0.35em]',
+                  isActive ? 'text-accent' : 'text-chrome/50'
                 )}
                 animate={isActive ? { scale: 1.05 } : { scale: 1 }}
               >
-                <span aria-hidden>{step.icon}</span>
-              </motion.div>
+                {String(index + 1).padStart(2, '0')}
+              </motion.span>
             </div>
             <div className="space-y-2">
-              <div className="flex items-center gap-3">
+              <div className="flex flex-wrap items-center gap-3">
                 <span className="font-display text-lg text-chrome">{step.title}</span>
-                <span className="text-xs uppercase tracking-[0.35em] text-accent/60">Étape {index + 1}</span>
+                {step.phase && (
+                  <span className="rounded-full bg-accent/15 px-3 py-1 text-[0.65rem] uppercase tracking-[0.35em] text-accent">
+                    {step.phase}
+                  </span>
+                )}
+                <span className="text-[0.65rem] uppercase tracking-[0.35em] text-accent/60">Étape {String(index + 1).padStart(2, '0')}</span>
               </div>
               <p className="max-w-xl text-sm text-chrome/70">{step.description}</p>
             </div>
