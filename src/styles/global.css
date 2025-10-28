@@ -30,3 +30,14 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+.clip-hero-arc {
+  clip-path: path('M0,120 C120,0 320,0 480,120 C640,240 840,240 960,120 L960,560 L0,560 Z');
+}
+
+@media (max-width: 768px) {
+  .clip-hero-arc {
+    clip-path: path('M0,80 C80,10 260,10 360,80 C460,150 640,160 720,80 L720,480 L0,480 Z');
+  }
+}
+
