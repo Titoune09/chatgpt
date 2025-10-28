@@ -11,9 +11,7 @@ export function ProcessSection() {
         <div className="flex flex-col gap-16 lg:flex-row">
           <div className="flex-1">
             <h2 className="font-display text-3xl text-chrome sm:text-4xl">Process sinusoïdal</h2>
-            <p className="mt-4 text-base text-chrome/70">
-              Une timeline ondulée qui révèle chaque étape au scroll, jalons positionnés sur les crêtes.
-            </p>
+            <p className="mt-4 text-base text-chrome/70">Une colonne claire pour suivre chaque étape sans se perdre.</p>
             <div className="mt-10 hidden lg:block">
               <Stepper steps={processSteps} currentIndex={current} onStepChange={setCurrent} />
             </div>
@@ -30,13 +28,21 @@ export function ProcessSection() {
                     onFocus={() => setCurrent(index)}
                     tabIndex={0}
                   >
-                    <div className="flex items-center gap-4">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full border border-accent/40 bg-night/60 text-xl">
-                        <span aria-hidden>{step.icon}</span>
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full border border-accent/30 bg-night/60 text-xs uppercase tracking-[0.35em] text-accent">
+                        {String(index + 1).padStart(2, '0')}
                       </div>
-                      <div>
+                      <div className="space-y-2">
+                        <div className="flex flex-wrap items-center gap-3">
+                          {step.phase && (
+                            <span className="rounded-full bg-accent/15 px-3 py-1 text-[0.65rem] uppercase tracking-[0.35em] text-accent">
+                              {step.phase}
+                            </span>
+                          )}
+                          <span className="text-[0.65rem] uppercase tracking-[0.35em] text-chrome/50">Étape {String(index + 1).padStart(2, '0')}</span>
+                        </div>
                         <h3 className="font-display text-xl text-chrome">{step.title}</h3>
-                        <p className="mt-1 text-sm text-chrome/60">{step.description}</p>
+                        <p className="text-sm text-chrome/60">{step.description}</p>
                       </div>
                     </div>
                   </article>

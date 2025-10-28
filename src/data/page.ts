@@ -1,15 +1,14 @@
 export const navLinks = [
-  { href: '#hero', label: 'Immersion', icon: '🌌' },
-  { href: '#narrative-nav', label: 'Navigation', icon: '🧭' },
-  { href: '#arguments', label: 'Pourquoi nous', icon: '⚡️' },
-  { href: '#showroom', label: 'Showroom', icon: '🚗' },
-  { href: '#gallery', label: 'Galaxie', icon: '🪐' },
-  { href: '#processus', label: 'Process', icon: '🧬' },
-  { href: '#technos', label: 'Technos', icon: '🛠️' },
-  { href: '#temoignages', label: 'Avis', icon: '💬' },
-  { href: '#cta', label: 'Action', icon: '🚀' },
-  { href: '#blog', label: 'Ressources', icon: '📚' },
-  { href: '#footer', label: 'Contact', icon: '📞' },
+  { href: '#hero', label: 'Immersion', description: 'Introduction' },
+  { href: '#arguments', label: 'Preuves', description: 'Pourquoi nous' },
+  { href: '#showroom', label: 'Showroom', description: 'Expériences' },
+  { href: '#gallery', label: 'Galaxie', description: 'Laboratoire' },
+  { href: '#processus', label: 'Process', description: 'Méthode' },
+  { href: '#technos', label: 'Technos', description: 'Stack' },
+  { href: '#temoignages', label: 'Avis', description: 'Clients' },
+  { href: '#cta', label: 'Action', description: 'Prise de contact' },
+  { href: '#blog', label: 'Ressources', description: 'Articles' },
+  { href: '#footer', label: 'Contact', description: 'Coordonnées' },
 ];
 
 export const heroContent = {
@@ -25,37 +24,37 @@ export const uspList = [
   {
     title: 'Narrative Flow',
     description: 'Orchestration serpentine de contenu pour ancrer la compréhension et réduire le churn exploratoire.',
-    icon: '🌀',
+    category: 'Stratégie',
   },
   {
     title: 'Cinematic Layers',
     description: 'Plans superposés, parallaxe contrôlée et focus dynamique pour capter l’attention dès la première seconde.',
-    icon: '🎬',
+    category: 'Scénographie',
   },
   {
     title: 'Hyper-personnalisation',
     description: 'Cartographie du parcours utilisateur alimentée par la data pour déclencher les bons signaux au bon moment.',
-    icon: '🧠',
+    category: 'Data',
   },
   {
     title: 'Conversion tactile',
     description: 'Gestuelles naturelles, drags contrôlés et feedback haptiques visuels pour transformer l’engagement en action.',
-    icon: '🤲',
+    category: 'Interaction',
   },
   {
     title: 'Accessibilité renforcée',
     description: 'Contraste élevé, commandes vocales optionnelles et logique DOM linéaire pour tous les visiteurs.',
-    icon: '♿️',
+    category: 'Accessibilité',
   },
   {
     title: 'Ops et performance',
     description: 'Chargements paresseux, paquets fractionnés et animations décélérées sur mobile pour garder le site vif.',
-    icon: '⚙️',
+    category: 'Performance',
   },
   {
     title: 'Sécurité intégrée',
     description: 'Audit continu, stockage chiffré et surveillance proactive pour vos données critiques.',
-    icon: '🛡️',
+    category: 'Sécurité',
   },
 ];
 
@@ -135,57 +134,57 @@ export const processSteps = [
     id: 'immersion',
     title: 'Immersion stratégique',
     description: 'Workshops avec vos équipes pour tracer la sinusoïde narrative et définir les jalons émotionnels.',
-    icon: '🔭',
+    phase: 'Cartographier',
   },
   {
     id: 'prototypage',
     title: 'Prototypage multi-sens',
     description: 'Wireflows organiques, maquettes motion et prototypes tactiles prêts pour tests.',
-    icon: '🧪',
+    phase: 'Prototyper',
   },
   {
     id: 'production',
     title: 'Production cinétique',
     description: 'Déploiement React + WebGL, intégration des composants ReactBits optimisés, QA multi-device.',
-    icon: '🛠️',
+    phase: 'Produire',
   },
   {
     id: 'lancement',
     title: 'Lancement orbital',
     description: 'Monitoring en direct, outils de mesure intégrés et tuning des animations post-lancement.',
-    icon: '🚀',
+    phase: 'Déployer',
   },
   {
     id: 'growth',
     title: 'Growth continu',
     description: 'Analyse data-driven, A/B tests cinétiques et roadmap d’amélioration perpétuelle.',
-    icon: '📈',
+    phase: 'Optimiser',
   },
 ];
 
 export const technoCards = [
   {
-    icon: '⚛️',
     title: 'React 18 + Server Islands',
     description: 'Hydratation ciblée et streaming pour des pages ultra-rapides, même avec des animations riches.',
+    badge: 'Front-end',
     link: 'https://react.dev/',
   },
   {
-    icon: '💠',
     title: 'Framer Motion 11',
     description: 'Timeline avancée, gestures fluides et orchestration multi-couches sans compromis.',
+    badge: 'Motion',
     link: 'https://www.framer.com/motion/',
   },
   {
-    icon: '🌫️',
     title: 'Tailwind CSS 3',
     description: 'Design system organique et tokens modulables pour sculpter chaque courbe.',
+    badge: 'Design',
     link: 'https://tailwindcss.com/',
   },
   {
-    icon: '🛰️',
     title: 'ReactBits',
     description: 'Bibliothèque de micro-interactions premium, adaptée pour l’ultra expressivité.',
+    badge: 'Interactions',
     link: 'https://github.com/',
   },
 ];

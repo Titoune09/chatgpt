@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { cn } from '../../lib/cn';
 
 type GlassIconCardProps = {
-  icon: React.ReactNode;
+  badge: string;
   title: string;
   description: string;
   link?: string;
@@ -23,17 +23,15 @@ export function GlassIcons({ items, className }: GlassIconsProps) {
           whileHover={{ y: -10 }}
         >
           <div className="relative flex items-start gap-4">
-            <div className="relative flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-night/60">
-              <motion.span
-                aria-hidden
-                className="text-2xl"
-                initial={{ rotate: -6 }}
-                whileHover={{ rotate: 0 }}
-                transition={{ type: 'spring', stiffness: 120, damping: 15 }}
-              >
-                {item.icon}
-              </motion.span>
-            </div>
+            <motion.span
+              aria-hidden
+              className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-accent/15 via-transparent to-accent/5 text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-accent"
+              initial={{ rotate: -8 }}
+              whileHover={{ rotate: 0 }}
+              transition={{ type: 'spring', stiffness: 120, damping: 15 }}
+            >
+              {item.badge}
+            </motion.span>
             <div className="space-y-3">
               <h3 className="font-display text-xl text-chrome">{item.title}</h3>
               <p className="text-sm text-chrome/70">{item.description}</p>
