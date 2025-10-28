@@ -3,60 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garage Undercover - Clicker de bolides</title>
+    <title>Overdrive Society · Passionnés de voitures d'exception</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <main class="page">
-        <header class="top">
-            <h1>Garage Undercover</h1>
-            <p>Le concessionnaire clandestin compte sur toi : récupère les clés des bolides avant que la police ne mette la main dessus et fais grimper ta réputation&nbsp;!</p>
-        </header>
-
-        <section class="hud" aria-label="tableau de bord du jeu">
-            <div class="stat">
-                <span class="label">Réputation</span>
-                <span id="score" class="value">0</span>
-            </div>
-            <div class="stat">
-                <span class="label">Combo</span>
-                <span id="combo" class="value">x1</span>
-            </div>
-            <div class="stat">
-                <span class="label">Temps</span>
-                <span id="timer" class="value">60s</span>
-            </div>
-            <div class="stat">
-                <span class="label">Points de planque</span>
-                <span id="lives" class="value">❤️❤️❤️</span>
-            </div>
-            <div class="stat">
-                <span class="label">Record</span>
-                <span id="best" class="value">0</span>
-            </div>
-        </section>
-
-        <section class="arena-wrapper">
-            <button id="start" class="start-btn">Lancer le casse</button>
-            <div id="arena" class="arena" role="application" aria-label="zone de jeu"></div>
-            <p id="feedback" class="feedback" aria-live="polite"></p>
-        </section>
-
-        <section class="tips">
-            <h2>Briefing express</h2>
-            <ul>
-                <li>Appuie sur <strong>Lancer le casse</strong> pour déclencher le minuteur de la descente de police (60&nbsp;s).</li>
-                <li>Une clé apparaît dans le garage : clique dessus avant qu'elle ne disparaisse pour sécuriser la voiture.</li>
-                <li>Chaque récupération rapide booste ton <strong>combo</strong> et multiplie ta réputation.</li>
-                <li>Laisse filer une clé et tu perds un <strong>point de planque</strong>. Zéro planque, et le garage est compromis.</li>
-                <li>Atteins un nouveau <strong>record</strong> pour devenir la légende du quartier.</li>
-            </ul>
-        </section>
-
-        <footer class="footer">
-            <small>Deviens le roi du trafic – mais n'oublie pas de rester discret.</small>
-        </footer>
-    </main>
-    <script src="script.js"></script>
+<body data-theme="dark">
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel" src="script.js"></script>
 </body>
 </html>
