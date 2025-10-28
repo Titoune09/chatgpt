@@ -7,9 +7,9 @@ export function BlogSection() {
     <section id="blog" className="relative mx-auto mt-40 max-w-6xl px-6">
       <div className="rounded-[3rem] border border-white/10 bg-steel/80 p-12 shadow-subtle backdrop-blur">
         <header className="text-center">
-          <h2 className="font-display text-3xl text-chrome sm:text-4xl">Blog & ressources</h2>
+          <h2 className="font-display text-3xl text-chrome sm:text-4xl">Journal du paddock</h2>
           <p className="mt-4 text-base text-chrome/70">
-            Cartes diagonales en escalier, révélées au scroll pour faciliter la lecture verticale.
+            Conseils circuits, roadtrips lumineux et sécurité des données : nos éditos pour vivre la passion en continu.
           </p>
         </header>
         <div className="mt-12">

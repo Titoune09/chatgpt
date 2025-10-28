@@ -4,6 +4,27 @@ import { SpotlightCard } from '../components/reactbits/SpotlightCard';
 import { heroContent } from '../data/page';
 
 export function HeroCinematicSection() {
+  const heroFeatureCards = [
+    {
+      title: 'Briefing interactif',
+      description: 'Plans de piste animés, caméras embarquées et météo live diffusés la veille du run.',
+      details: 'Optimisé mobile : vibrations réduites, lecture plein écran et gestes intuitifs.',
+      tone: 'bg-night/60',
+    },
+    {
+      title: 'Garage streaming',
+      description: 'Visites de collections privées avec audio spatial, fiches techniques et chat expert.',
+      details: 'Qualité vidéo adaptative, sous-titres dynamiques et raccourcis clavier.',
+      tone: 'bg-steel/70',
+    },
+    {
+      title: 'Crew Radar',
+      description: 'Matchmaking instantané pour copilotes, photographes et mécaniciens disponibles.',
+      details: 'Notifications ciblées, filtres accessibilité et calendrier synchronisé.',
+      tone: 'bg-night/70',
+    },
+  ];
+
   return (
     <section
       id="hero"
@@ -21,6 +42,13 @@ export function HeroCinematicSection() {
           transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
         />
       </div>
+      <div className="pointer-events-none absolute inset-x-0 top-16 flex justify-center">
+        <motion.div
+          className="h-56 w-[60rem] -rotate-6 rounded-[999px] border border-white/5 bg-[linear-gradient(120deg,rgba(255,255,255,0.08)_0%,rgba(123,223,242,0.08)_40%,rgba(15,17,21,0.2)_100%)] opacity-80"
+          animate={{ rotate: [-6, -3, -6] }}
+          transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+        />
+      </div>
       <div className="absolute inset-x-0 bottom-0 h-72 origin-bottom bg-night/40 backdrop-blur-md" style={{ clipPath: 'ellipse(130% 100% at 50% 100%)' }} />
       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-night to-transparent" />
 
@@ -32,6 +60,14 @@ export function HeroCinematicSection() {
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
           <div className="clip-hero-arc relative overflow-hidden rounded-[3.5rem] border border-white/10 bg-night/40 p-10 backdrop-blur-xl">
+            <motion.span
+              className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-night/60 px-4 py-2 text-[0.7rem] uppercase tracking-[0.35em] text-accent"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.05, duration: 0.6 }}
+            >
+              {heroContent.highlight}
+            </motion.span>
             <motion.h1
               className="font-display text-4xl leading-tight text-chrome sm:text-5xl lg:text-[3.4rem]"
               initial={{ y: 20, opacity: 0 }}
@@ -64,6 +100,23 @@ export function HeroCinematicSection() {
                 </a>
               ))}
             </motion.div>
+            <motion.ul
+              className="mt-10 grid gap-4 sm:grid-cols-3"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35, duration: 0.7 }}
+            >
+              {heroContent.metrics?.map((metric) => (
+                <li
+                  key={metric.label}
+                  className="rounded-[2rem] border border-white/10 bg-night/60 px-5 py-4 text-left"
+                >
+                  <div className="font-display text-3xl text-accent">{metric.value}</div>
+                  <div className="mt-1 text-xs uppercase tracking-[0.3em] text-chrome/60">{metric.label}</div>
+                  <p className="mt-3 text-[0.8rem] text-chrome/50">{metric.detail}</p>
+                </li>
+              ))}
+            </motion.ul>
           </div>
         </motion.div>
 
@@ -73,24 +126,11 @@ export function HeroCinematicSection() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.9, ease: 'easeOut' }}
         >
-          <SpotlightCard
-            title="Expérience signature"
-            description="Une mise en scène interactive orchestrée pour révéler votre produit comme un film." 
-            className="bg-night/60"
-          >
-            <p className="text-sm text-chrome/60">
-              Halo réactif au pointeur, effets réduits automatiquement sur mobile pour préserver la fluidité.
-            </p>
-          </SpotlightCard>
-          <SpotlightCard
-            title="CTA sans friction"
-            description="Concevez des actions primaires et secondaires synchronisées avec vos objectifs de conversion."
-            className="bg-steel/70"
-          >
-            <p className="text-sm text-chrome/60">
-              Focus visible, navigation clavier fluide et boutons adaptatifs sur toute largeur en version mobile.
-            </p>
-          </SpotlightCard>
+          {heroFeatureCards.map((card) => (
+            <SpotlightCard key={card.title} title={card.title} description={card.description} className={card.tone}>
+              <p className="text-sm text-chrome/60">{card.details}</p>
+            </SpotlightCard>
+          ))}
         </motion.div>
       </div>
     </section>

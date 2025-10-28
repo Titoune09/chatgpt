@@ -7,8 +7,8 @@ export function CTASection() {
       <div className="absolute inset-x-0 bottom-0 h-40 bg-night" style={{ clipPath: 'path("M0,0 C240,60 480,-20 720,40 C960,100 1200,20 1440,80 L1440,160 L0,160 Z")' }} />
       <div className="relative mx-auto max-w-4xl pb-32 pt-32">
         <SpotlightCard
-          title="Prêt à sculpter votre prochain lancement?"
-          description="Bénéficiez d’une immersion sur-mesure avec notre équipe de creative technologists."
+          title="Rejoignez le paddock privé RevPulse"
+          description="Accédez aux prochains track days, roadtrips néon et briefings exclusifs réservés aux membres."
           className="bg-steel/80"
         >
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -16,13 +16,13 @@ export function CTASection() {
               href="#contact"
               className="flex-1 rounded-full border border-accent/50 bg-accent/80 px-6 py-3 text-center text-sm font-medium text-night transition-colors hover:bg-accent"
             >
-              Lancer un atelier
+              Demander une invitation
             </a>
             <a
               href="#hero"
               className="flex-1 rounded-full border border-white/10 bg-transparent px-6 py-3 text-center text-sm font-medium text-chrome/80 transition-colors hover:text-chrome"
             >
-              Télécharger le playbook
+              Voir le calendrier 2024
             </a>
           </div>
         </SpotlightCard>

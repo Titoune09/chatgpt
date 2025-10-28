@@ -7,9 +7,9 @@ export function ShowroomPortfolioSection() {
   return (
     <section id="showroom" className="relative mx-auto mt-36 max-w-6xl px-6">
       <div className="mb-12 text-center">
-        <h2 className="font-display text-3xl text-chrome sm:text-4xl">Showroom organique</h2>
+        <h2 className="font-display text-3xl text-chrome sm:text-4xl">Expériences signature du garage</h2>
         <p className="mt-4 text-base text-chrome/70">
-          Grille inclinée, gouttières irrégulières et modales immersives pour explorer chaque projet.
+          Une mosaïque inclinée façon piste pour parcourir nos track days, roadtrips et coulisses de collections.
         </p>
       </div>
       <div className="columns-1 gap-6 sm:columns-2 lg:columns-3 [column-fill:_balance]">
@@ -35,7 +35,7 @@ export function ShowroomPortfolioSection() {
                     ))}
                   </div>
                   <button className="rounded-full border border-white/10 bg-steel/70 px-4 py-2 text-xs uppercase tracking-[0.35em] text-chrome">
-                    Voir
+                    Ouvrir le dossier
                   </button>
                 </div>
               </div>
