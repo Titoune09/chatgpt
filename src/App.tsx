@@ -1,305 +1,295 @@
-import { useMemo, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-
-const missions = [
-  "Transforme ton cahier en magazine spatial en n'utilisant que ce qu'il y a dans ta trousse.",
-  'Compose un haïku dramatique sur la leçon actuelle en trois emojis mentaux.',
-  'Crée une mini bande-annonce dans ta tête pour un film inspiré de ce chapitre.',
-  'Imagine une version rétro-futuriste de la classe et note trois éléments déco.',
-  'Conçois un signal secret pour prévenir un camarade qu\'il est temps de sourire.',
-  'Dresse l\'inventaire de ton sac comme si tu étais un explorateur temporel.',
-  'Réécris la consigne entendue comme un slogan publicitaire mystérieux.',
-];
-
-const ambiances = [
-  'Ambiance agent secret feutré : tout bruit devient un indice sonore.',
-  'Ambiance studio de création : chaque objet est un prototype en devenir.',
-  'Ambiance capsule temporelle : tu rédiges pour le toi du futur.',
-  'Ambiance festival minimaliste : les lumières néon sont imaginaires mais intenses.',
-  'Ambiance café littéraire : les chuchotements deviennent des dialogues stylés.',
-];
-
-const twists = [
-  'Ajoute une contrainte couleur (uniquement des tons glaciaux ou solaires).',
-  'Insère un symbole secret qui n\'a de sens que pour toi.',
-  'Tout doit pouvoir être raconté en trente secondes chrono.',
-  'Imagine que tu dois présenter le résultat à un extraterrestre courtois.',
-  'Inclue une référence subtile à ta chanson favorite du moment.',
-];
-
-const microQuests = [
-  {
-    title: 'Flash-croquis',
-    duration: '2 min',
-    description:
-      'Croque en cinq traits maximum ce qui se passe devant toi comme si c\'était une scène de théâtre.',
-  },
-  {
-    title: 'Cartographie secrète',
-    duration: '3 min',
-    description: 'Dessine un mini-plan de la classe et invente un surnom pour trois endroits.',
-  },
-  {
-    title: 'Playlist silencieuse',
-    duration: '1 min',
-    description: 'Choisis la musique imaginaire parfaite pour le moment et écris-en trois adjectifs.',
-  },
-  {
-    title: 'Emoji météo',
-    duration: '30 s',
-    description: 'Décris l\'ambiance générale avec deux emojis météo que tu garderais en mémoire.',
-  },
-  {
-    title: 'Selfie mental',
-    duration: '2 min',
-    description: 'Imagine un selfie cinématique de toi ici et décris le décor en une phrase.',
-  },
-];
-
-const timeline = [
-  {
-    label: 'Calibration',
-    detail: 'Observe la salle comme si tu faisais un repérage de scène.',
-    length: '1 min',
-  },
-  {
-    label: 'Mission',
-    detail: 'Lance ton mix et note les premières idées qui débordent.',
-    length: '4 min',
-  },
-  {
-    label: 'Finition',
-    detail: 'Peaufine un détail qui fera sourire ton toi du futur.',
-    length: '3 min',
-  },
-];
-
-type MissionMix = {
-  mission: string;
-  ambiance: string;
-  twist: string;
+type Destination = {
+  name: string;
+  vibe: string;
+  duration: string;
+  price: string;
+  image: string;
 };
 
-function pickAnother<T>(items: T[], previous?: T) {
-  if (items.length === 1) return items[0];
-  let candidate = items[Math.floor(Math.random() * items.length)];
-  while (candidate === previous) {
-    candidate = items[Math.floor(Math.random() * items.length)];
-  }
-  return candidate;
-}
+type Offer = {
+  title: string;
+  description: string;
+  badge: string;
+  includes: string[];
+};
 
-function createMix(previous?: MissionMix): MissionMix {
-  return {
-    mission: pickAnother(missions, previous?.mission),
-    ambiance: pickAnother(ambiances, previous?.ambiance),
-    twist: pickAnother(twists, previous?.twist),
-  };
-}
+type Testimonial = {
+  name: string;
+  trip: string;
+  quote: string;
+};
+
+const destinations: Destination[] = [
+  {
+    name: 'Bali, Indonésie',
+    vibe: 'Temples, jungle, beach clubs et retraites bien-être',
+    duration: '10 jours',
+    price: 'Dès 1 490€',
+    image:
+      'https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?auto=format&fit=crop&w=1400&q=80',
+  },
+  {
+    name: 'Kyoto, Japon',
+    vibe: 'Traditions, ryokans, gastronomie et quartiers historiques',
+    duration: '9 jours',
+    price: 'Dès 1 980€',
+    image:
+      'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1400&q=80',
+  },
+  {
+    name: 'Marrakech, Maroc',
+    vibe: 'Riads premium, désert d’Agafay et expériences artisanales',
+    duration: '6 jours',
+    price: 'Dès 890€',
+    image:
+      'https://images.unsplash.com/photo-1597212618440-806262de4f6d?auto=format&fit=crop&w=1400&q=80',
+  },
+  {
+    name: 'Reykjavik, Islande',
+    vibe: 'Roadtrip volcanique, cascades et aurores boréales',
+    duration: '8 jours',
+    price: 'Dès 1 650€',
+    image:
+      'https://images.unsplash.com/photo-1504893524553-b855bce32c67?auto=format&fit=crop&w=1400&q=80',
+  },
+];
+
+const offers: Offer[] = [
+  {
+    title: 'Voyage sur-mesure',
+    description: 'Une proposition 100% personnalisée selon vos dates, envies et niveau de confort.',
+    badge: 'Signature',
+    includes: ['Conseiller dédié', 'Itinéraire personnalisé', 'Assistance 7j/7'],
+  },
+  {
+    title: 'Lune de miel',
+    description: 'Des séjours romantiques haut de gamme avec expériences exclusives à deux.',
+    badge: 'Romance',
+    includes: ['Hôtels d’exception', 'Moments privés', 'Surprises sur place'],
+  },
+  {
+    title: 'Family first',
+    description: 'Des vacances fluides pour les familles, sans stress logistique.',
+    badge: 'Famille',
+    includes: ['Activités multi-âges', 'Transferts optimisés', 'Support réactif'],
+  },
+  {
+    title: 'Évasion express',
+    description: 'City break premium prêt rapidement avec rapport qualité/prix maîtrisé.',
+    badge: 'Week-end',
+    includes: ['Départ rapide', 'Programme équilibré', 'Budget transparent'],
+  },
+];
+
+const stats = [
+  { value: '12 000+', label: 'voyageurs accompagnés' },
+  { value: '48', label: 'pays partenaires' },
+  { value: '4.9/5', label: 'note moyenne clients' },
+  { value: '24h', label: 'délai de proposition' },
+];
+
+const testimonials: Testimonial[] = [
+  {
+    name: 'Camille & Idriss',
+    trip: 'Lune de miel au Japon',
+    quote:
+      'On a eu un voyage parfaitement pensé, avec des adresses incroyables et un rythme vraiment adapté à nous.',
+  },
+  {
+    name: 'Sophie R.',
+    trip: 'Family trip à Bali',
+    quote: 'Tout était clair, fluide, et l’équipe nous a aidés dès qu’on avait une question pendant le séjour.',
+  },
+  {
+    name: 'Nassim M.',
+    trip: 'Roadtrip Islande',
+    quote: 'L’itinéraire était impeccable. On a profité à fond sans perdre de temps sur l’organisation.',
+  },
+];
+
+const faqs = [
+  {
+    question: 'Combien de temps pour recevoir un devis ? ',
+    answer: 'Nous envoyons une première proposition sous 24h ouvrées.',
+  },
+  {
+    question: 'Pouvez-vous gérer les vols + hôtels + activités ?',
+    answer: 'Oui, nous pouvons gérer l’ensemble du séjour ou seulement une partie selon vos besoins.',
+  },
+  {
+    question: 'Proposez-vous des paiements échelonnés ?',
+    answer: 'Oui, plusieurs options de paiement peuvent être proposées selon le dossier.',
+  },
+];
 
 export default function App() {
-  const [mix, setMix] = useState<MissionMix>(() => createMix());
-  const [stepIndex, setStepIndex] = useState(0);
-
-  const vibeCards = useMemo(() => microQuests.concat(microQuests.slice(0, 2)), []);
-
-  const progress = ((stepIndex + 1) / timeline.length) * 100;
-
   return (
-    <div className="relative min-h-screen overflow-hidden bg-night text-chrome">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-24 top-10 h-64 w-64 rounded-full bg-accent/20 blur-3xl sm:h-72 sm:w-72" />
-        <div className="absolute -right-24 top-1/3 h-72 w-72 rounded-full bg-ember/20 blur-3xl sm:h-80 sm:w-80" />
-        <div className="absolute bottom-0 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-chrome/5 blur-3xl" />
-      </div>
-
-      <div className="relative z-10 flex min-h-screen flex-col gap-12 px-4 pb-20 pt-16 sm:px-6 lg:px-10">
-        <header className="space-y-4 max-w-2xl">
-          <p className="text-xs uppercase tracking-[0.5em] text-accent/70">Mode incognito</p>
-          <h1 className="font-display text-4xl leading-tight sm:text-5xl">
-            Kit anti-ennui ultra discret pour transformer la classe en studio créatif.
-          </h1>
-          <p className="text-base text-chrome/70 sm:text-lg">
-            Pas de jeux, pas besoin de bouger de ta chaise : juste des micro missions stylées à déclencher du bout des doigts. Mobile
-            first, iPad ready, imagination maximale.
-          </p>
-        </header>
-
-        <section className="space-y-6">
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl sm:p-8">
-            <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <p className="text-sm uppercase tracking-[0.4em] text-accent/60">Mix instantané</p>
-                <h2 className="mt-2 font-display text-2xl sm:text-3xl">Ton brief secret</h2>
-              </div>
-              <motion.button
-                whileTap={{ scale: 0.95 }}
-                whileHover={{ scale: 1.02 }}
-                onClick={() => setMix((previous) => createMix(previous))}
-                className="rounded-full bg-accent px-5 py-3 text-sm font-semibold text-night shadow-halo transition focus:outline-none focus:ring focus:ring-accent/40"
-              >
-                Remix éclair
-              </motion.button>
-            </div>
-
-            <div className="mt-6 space-y-4 text-sm sm:text-base">
-              <AnimatePresence mode="wait">
-                <motion.p
-                  key={mix.mission}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.25 }}
-                  className="rounded-2xl bg-night/70 p-4"
-                >
-                  <span className="text-accent">Mission :</span> {mix.mission}
-                </motion.p>
-              </AnimatePresence>
-              <AnimatePresence mode="wait">
-                <motion.p
-                  key={mix.ambiance}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.25, delay: 0.05 }}
-                  className="rounded-2xl bg-night/70 p-4"
-                >
-                  <span className="text-ember">Ambiance :</span> {mix.ambiance}
-                </motion.p>
-              </AnimatePresence>
-              <AnimatePresence mode="wait">
-                <motion.p
-                  key={mix.twist}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.25, delay: 0.1 }}
-                  className="rounded-2xl bg-night/70 p-4"
-                >
-                  <span className="text-chrome/80">Twist :</span> {mix.twist}
-                </motion.p>
-              </AnimatePresence>
-            </div>
+    <div className="bg-night text-chrome">
+      <header className="sticky top-0 z-20 border-b border-white/10 bg-night/90 backdrop-blur">
+        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
+          <div>
+            <p className="text-xs uppercase tracking-[0.35em] text-accent/80">Aetheria Travel</p>
+            <p className="text-xs text-chrome/60">Agence de voyage premium</p>
           </div>
+          <nav className="hidden gap-6 text-sm text-chrome/80 md:flex">
+            <a href="#offres" className="hover:text-accent">Offres</a>
+            <a href="#destinations" className="hover:text-accent">Destinations</a>
+            <a href="#avis" className="hover:text-accent">Avis</a>
+            <a href="#faq" className="hover:text-accent">FAQ</a>
+          </nav>
+          <a href="#contact" className="rounded-full bg-accent px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-night">
+            Demander un devis
+          </a>
+        </div>
+      </header>
 
-          <div className="rounded-3xl border border-white/5 bg-steel/70 p-6 shadow-halo backdrop-blur-xl sm:p-8">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs uppercase tracking-[0.4em] text-ember/70">Timeline</p>
-                <h2 className="mt-2 font-display text-2xl">Sprint créatif de 8 minutes</h2>
-              </div>
-              <div className="hidden text-right text-xs text-chrome/60 sm:block">
-                <p>Étape {stepIndex + 1}</p>
-                <p>{timeline[stepIndex].length}</p>
-              </div>
+      <main className="mx-auto w-full max-w-6xl space-y-24 px-6 py-10 sm:py-14">
+        <section className="grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+          <div>
+            <p className="inline-flex rounded-full border border-accent/30 bg-accent/10 px-4 py-2 text-xs uppercase tracking-[0.3em] text-accent">
+              Voyagez mieux
+            </p>
+            <h1 className="mt-5 font-display text-4xl leading-tight sm:text-5xl lg:text-6xl">
+              Une agence qui transforme vos envies en vrais souvenirs.
+            </h1>
+            <p className="mt-5 max-w-xl text-base text-chrome/70 sm:text-lg">
+              Nous créons des voyages sur-mesure élégants, structurés et sans friction. Vous profitez pleinement, on orchestre
+              chaque détail.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a href="#destinations" className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-night">
+                Explorer les destinations
+              </a>
+              <a href="#offres" className="rounded-full border border-white/20 px-6 py-3 text-sm text-chrome/90">
+                Nos offres
+              </a>
             </div>
-            <div className="mt-4 h-2 overflow-hidden rounded-full bg-night/60">
-              <motion.div
-                className="h-full rounded-full bg-ember"
-                initial={false}
-                animate={{ width: `${progress}%` }}
-                transition={{ duration: 0.4, ease: 'easeOut' }}
-              />
-            </div>
-            <div className="mt-6">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={timeline[stepIndex].label}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.3 }}
-                  className="space-y-2 rounded-2xl bg-night/60 p-4 text-sm sm:text-base"
-                >
-                  <p className="text-xs uppercase tracking-[0.3em] text-ember/60">{timeline[stepIndex].length}</p>
-                  <h3 className="font-semibold text-chrome">{timeline[stepIndex].label}</h3>
-                  <p className="text-chrome/70">{timeline[stepIndex].detail}</p>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <motion.button
-                whileTap={{ scale: 0.95 }}
-                whileHover={{ scale: 1.02 }}
-                onClick={() => setStepIndex((index) => (index - 1 + timeline.length) % timeline.length)}
-                className="w-full rounded-full border border-white/20 px-4 py-3 text-sm font-semibold text-chrome/80 transition hover:border-white/40 focus:outline-none focus:ring focus:ring-ember/30 sm:w-auto"
-              >
-                Étape précédente
-              </motion.button>
-              <motion.button
-                whileTap={{ scale: 0.95 }}
-                whileHover={{ scale: 1.02 }}
-                onClick={() => setStepIndex((index) => (index + 1) % timeline.length)}
-                className="w-full rounded-full bg-ember px-4 py-3 text-sm font-semibold text-night transition focus:outline-none focus:ring focus:ring-ember/30 sm:w-auto"
-              >
-                Prochaine étincelle
-              </motion.button>
-            </div>
-          </div>
-        </section>
-
-        <section className="space-y-4">
-          <div className="flex items-baseline justify-between">
-            <div>
-              <p className="text-xs uppercase tracking-[0.4em] text-accent/60">Micro-quêtes</p>
-              <h2 className="mt-2 font-display text-2xl">Scroll discret, idées XL</h2>
-            </div>
-            <span className="text-xs text-chrome/60">Glisse latéralement ➜</span>
-          </div>
-          <div className="-mx-4 overflow-x-auto px-4 pb-2">
-            <div className="flex gap-4">
-              {vibeCards.map((quest, index) => (
-                <motion.article
-                  key={`${quest.title}-${index}`}
-                  whileHover={{ translateY: -4 }}
-                  className="min-w-[260px] rounded-2xl border border-white/10 bg-white/5 p-4 text-sm shadow-subtle backdrop-blur"
-                >
-                  <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-accent/60">
-                    <span>{quest.duration}</span>
-                    <span>#{index + 1}</span>
-                  </div>
-                  <h3 className="mt-3 font-semibold text-lg text-chrome">{quest.title}</h3>
-                  <p className="mt-2 text-chrome/70">{quest.description}</p>
-                </motion.article>
+            <ul className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
+              {stats.map((item) => (
+                <li key={item.label} className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <div className="font-display text-2xl text-accent">{item.value}</div>
+                  <p className="mt-2 text-[0.68rem] uppercase tracking-[0.2em] text-chrome/60">{item.label}</p>
+                </li>
               ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="grid gap-6 sm:grid-cols-2">
-          <div className="rounded-3xl border border-white/10 bg-night/60 p-6 backdrop-blur-xl">
-            <p className="text-xs uppercase tracking-[0.4em] text-accent/60">Garde-fous</p>
-            <h2 className="mt-2 font-display text-2xl">Règles d\'ultra discrétion</h2>
-            <ul className="mt-4 space-y-3 text-sm text-chrome/70">
-              <li>• Tout reste silencieux : c\'est ton cinéma intérieur.</li>
-              <li>• Un carnet ou l\'app Notes suffit comme plateau de tournage.</li>
-              <li>• Chrono souple : tu peux couper ou relancer le mix quand tu veux.</li>
-              <li>• Bonus : partage la mission finale uniquement avec quelqu\'un qui saura apprécier.</li>
             </ul>
           </div>
 
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-            <p className="text-xs uppercase tracking-[0.4em] text-ember/70">Upgrade</p>
-            <h2 className="mt-2 font-display text-2xl">Si la séance dure plus longtemps</h2>
-            <ul className="mt-4 space-y-3 text-sm text-chrome/70">
-              <li>• Assemble plusieurs missions pour créer un mini magazine clandestin.</li>
-              <li>• Écris une lettre à toi-même de demain en relatant ta meilleure trouvaille.</li>
-              <li>• Crée un classement des objets les plus dramatiques de la classe.</li>
-              <li>• Imagine une affiche de film inspirée du prof du jour (attention : respect total !).</li>
-            </ul>
+          <div className="overflow-hidden rounded-[2.5rem] border border-white/10">
+            <img
+              src="https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=1400&q=80"
+              alt="Voyage premium au bord de la mer"
+              className="h-[30rem] w-full object-cover"
+            />
           </div>
         </section>
 
-        <footer className="rounded-3xl border border-white/10 bg-night/80 p-6 text-sm text-chrome/60 backdrop-blur-xl">
-          <p className="font-display text-lg text-chrome">
-            Glisse, griffonne, respire : c\'est ton laboratoire secret pour survivre aux heures longues.
+        <section id="offres" className="space-y-8">
+          <div className="text-center">
+            <h2 className="font-display text-3xl sm:text-4xl">Des offres nettes, premium et efficaces</h2>
+            <p className="mt-3 text-chrome/70">On garde le style, la simplicité et le sens du détail.</p>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2">
+            {offers.map((offer) => (
+              <article key={offer.title} className="rounded-3xl border border-white/10 bg-steel/70 p-7">
+                <span className="rounded-full bg-ember/20 px-3 py-1 text-xs uppercase tracking-[0.25em] text-ember">{offer.badge}</span>
+                <h3 className="mt-4 font-display text-2xl">{offer.title}</h3>
+                <p className="mt-3 text-sm text-chrome/70">{offer.description}</p>
+                <ul className="mt-4 space-y-2 text-sm text-chrome/80">
+                  {offer.includes.map((item) => (
+                    <li key={item}>• {item}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="destinations" className="space-y-8">
+          <div className="text-center">
+            <h2 className="font-display text-3xl sm:text-4xl">Destinations qui déclenchent le départ</h2>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2">
+            {destinations.map((destination) => (
+              <article key={destination.name} className="overflow-hidden rounded-[2rem] border border-white/10 bg-night/60">
+                <img src={destination.image} alt={destination.name} className="h-56 w-full object-cover" loading="lazy" />
+                <div className="space-y-2 p-5">
+                  <h3 className="font-display text-2xl">{destination.name}</h3>
+                  <p className="text-sm text-chrome/70">{destination.vibe}</p>
+                  <div className="flex items-center justify-between pt-2 text-sm uppercase tracking-[0.15em]">
+                    <span className="text-chrome/60">{destination.duration}</span>
+                    <span className="text-accent">{destination.price}</span>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="avis" className="space-y-8">
+          <div className="text-center">
+            <h2 className="font-display text-3xl sm:text-4xl">Ce que disent nos voyageurs</h2>
+          </div>
+          <div className="grid gap-5 md:grid-cols-3">
+            {testimonials.map((testimonial) => (
+              <article key={testimonial.name} className="rounded-3xl border border-white/10 bg-white/5 p-6">
+                <p className="text-sm text-chrome/80">“{testimonial.quote}”</p>
+                <p className="mt-5 font-semibold text-accent">{testimonial.name}</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-chrome/60">{testimonial.trip}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="faq" className="space-y-5 rounded-[2.5rem] border border-white/10 bg-steel/50 p-8">
+          <h2 className="font-display text-3xl sm:text-4xl">FAQ</h2>
+          {faqs.map((faq) => (
+            <article key={faq.question} className="rounded-2xl border border-white/10 bg-night/70 p-5">
+              <h3 className="font-semibold text-chrome">{faq.question}</h3>
+              <p className="mt-2 text-sm text-chrome/70">{faq.answer}</p>
+            </article>
+          ))}
+        </section>
+
+        <section id="contact" className="rounded-[2.5rem] border border-accent/25 bg-gradient-to-br from-accent/10 to-transparent p-8 sm:p-10">
+          <h2 className="font-display text-3xl sm:text-4xl">Parlons de votre prochain départ</h2>
+          <p className="mt-3 max-w-2xl text-chrome/70">
+            Dites-nous vos dates, budget et style de voyage. On vous envoie une proposition claire et personnalisée sous 24h.
           </p>
-          <p className="mt-2">
-            Optimisé pour iPad et smartphones : tout se joue à un doigt, sans jamais attirer l\'attention. Quand tu veux revenir au
-            monde réel, il suffit de fermer l\'onglet.
-          </p>
-        </footer>
-      </div>
+          <form className="mt-8 grid gap-4 sm:grid-cols-2">
+            <input
+              type="text"
+              placeholder="Nom complet"
+              className="rounded-full border border-white/20 bg-night/70 px-5 py-3 text-sm outline-none focus:border-accent"
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              className="rounded-full border border-white/20 bg-night/70 px-5 py-3 text-sm outline-none focus:border-accent"
+            />
+            <input
+              type="text"
+              placeholder="Destination souhaitée"
+              className="rounded-full border border-white/20 bg-night/70 px-5 py-3 text-sm outline-none focus:border-accent"
+            />
+            <input
+              type="text"
+              placeholder="Budget estimé"
+              className="rounded-full border border-white/20 bg-night/70 px-5 py-3 text-sm outline-none focus:border-accent"
+            />
+            <textarea
+              placeholder="Racontez-nous votre voyage idéal"
+              className="sm:col-span-2 min-h-32 rounded-3xl border border-white/20 bg-night/70 px-5 py-4 text-sm outline-none focus:border-accent"
+            />
+            <button className="sm:col-span-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-night">
+              Recevoir mon devis
+            </button>
+          </form>
+        </section>
+      </main>
+
+      <footer className="border-t border-white/10 py-8 text-center text-xs uppercase tracking-[0.2em] text-chrome/50">
+        © {new Date().getFullYear()} Aetheria Travel — Voyage sur-mesure
+      </footer>
     </div>
   );
 }
